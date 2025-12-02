@@ -1,0 +1,24 @@
+def kala_kaal(pikkus, fti): # defines a function to calculate fish weight
+    kaal = fti * (pikkus ** 3) / 100 # calculates weight using the Fulton condition factor formula
+    return round(kaal) # returns the rounded weight
+
+failinime = input("Sisesta failinime: ") # prompts user for filename
+alammõõt = int(input("Sisesta püügi alammõõt (cm): ")) # prompts user for minimum catch size
+fti = float(input("Sisesta Fultoni tüsedusindeks: ")) # prompts user for Fulton condition factor
+
+kaalud = [] # initializes an empty list to store weights
+
+with open(failinime, 'r', encoding='utf-8') as fail: # opens the specified file for reading
+    for rida in fail: # iterates through each line in the file
+        pikkus = int(rida.strip()) # reads and converts the line to an integer length
+        
+        if pikkus < alammõõt: # checks if the length is below the minimum catch size
+            print("Kala lasti vette tagasi") # prints message for fish released back
+        else: # if the fish meets the size requirement
+            kaal = kala_kaal(pikkus, fti) # calculates the weight
+            print(kaal) # prints the weight
+            kaalud.append(kaal) # adds the weight to the list
+
+if kaalud: # checks if there are any weights recorded
+    max_kaal_kg = max(kaalud) / 1000 # finds the maximum weight and converts to kilograms
+    print(f"{max_kaal_kg:.3f}") # prints the maximum weight formatted to three decimal places
