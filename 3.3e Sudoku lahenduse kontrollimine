@@ -1,0 +1,41 @@
+def kastid_korras(maatriks): # Checks if all 3x3 boxes are correct
+    for rea_nurk in range(0, 9, 3): # Loop through the starting row of each 3x3 box
+        for veeru_nurk in range(0, 9, 3): # Loop through the starting column of each 3x3 box
+            kast = [] # Initialize an empty list for the box
+            for i in range(3): # Loop through the rows of the box
+                for j in range(3): # Loop through the columns of the box
+                    kast.append(int(maatriks[rea_nurk + i][veeru_nurk + j])) # Add the element to the box list
+            if sorted(kast) != list(range(1, 10)): # Check if the box contains numbers 1-9
+                return False # Box is incorrect
+    return True # All boxes are correct
+
+
+def read_korras(maatriks): # Checks if all rows are correct
+    for rida in maatriks: # Loop through each row
+        if sorted(rida) != list(range(1, 10)): # Check if the row contains numbers 1-9
+            return False # Row is incorrect
+    return True # All rows are correct
+
+
+def veerud_korras(maatriks): # Checks if all columns are correct
+    for veeru_nr in range(9): # Loop through each column index
+        veerg = [] # Initialize an empty list for the column
+        for rea_nr in range(9): # Loop through each row index
+            veerg.append(maatriks[rea_nr][veeru_nr]) # Add the element to the column list
+        if sorted(veerg) != list(range(1, 10)): # Check if the column contains numbers 1-9
+            return False # Column is incorrect
+    return True # All columns are correct
+
+
+failinimi = input("Sisesta failinime: ") # Prompt user for filename
+
+with open(failinimi, 'r') as fail: # Open the file for reading
+    maatriks = [] # Initialize an empty list for the matrix
+    for rida in fail: # Loop through each line in the file
+        arvud = [int(x) for x in rida.split()] # Split the line into integers
+        maatriks.append(arvud) # Add the row to the matrix
+
+if read_korras(maatriks) and veerud_korras(maatriks) and kastid_korras(maatriks): # Check if rows, columns, and boxes are correct
+    print("OK") # If all checks pass, print "OK"
+else: # If any check fails
+    print("VIGA")  # Print "VIGA"

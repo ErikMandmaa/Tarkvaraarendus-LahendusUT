@@ -1,0 +1,9 @@
+def keskmised(hinnete_tabel): # Function to calculate average grades
+    tulemus = [] # List to store results
+    for aine in hinnete_tabel: # Iterate through each subject
+        aine_nimi = aine[0] # Get subject name
+        hinded = aine[1:] # Get grades
+        keskmine = sum(hinded) / len(hinded) # Calculate average
+        keskmine_ümardatud = round(keskmine, 1) # Round to one decimal place
+        tulemus.append([aine_nimi, keskmine_ümardatud]) # Append subject name and average to results
+    return tulemus # Return the results

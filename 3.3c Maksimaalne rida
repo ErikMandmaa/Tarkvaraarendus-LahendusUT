@@ -1,0 +1,15 @@
+failinimei = input("Sisesta failinime: ") # Enter the filename
+
+with open(failinimei, 'r') as fail: # Open the file for reading
+    suurim_summa = None # Initialize the maximum sum
+    suurima_rea_nr = 0 # Initialize the line number with the maximum sum
+     
+    for rea_nr, rida in enumerate(fail, start=1): # Read each line with line number
+        arvud = [int(x) for x in rida.split()] # Convert line to list of integers
+        summa = sum(arvud) # Calculate the sum of the integers in the line
+        
+        if suurim_summa is None or summa > suurim_summa: # Check if current sum is greater than the maximum sum
+            suurim_summa = summa # Update the maximum sum
+            suurima_rea_nr = rea_nr # Update the line number with the maximum sum
+
+print(f"Suurim summa {suurim_summa} on real {suurima_rea_nr}") # Print the result

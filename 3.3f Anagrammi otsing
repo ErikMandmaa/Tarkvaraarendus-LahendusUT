@@ -1,0 +1,21 @@
+def leidub_anagramm(maatriks): # Checks if any element is an anagram of the concatenation of its neighbors
+    for rea_nr in range(len(maatriks)): # Loop through each row
+        for veeru_nr in range(len(maatriks[rea_nr])): # Loop through each column
+            element = maatriks[rea_nr][veeru_nr] # Get the current element
+            
+            if veeru_nr == 0: # If it's the first column
+                vasak = '' # No left neighbor
+            else: # Otherwise
+                vasak = maatriks[rea_nr][veeru_nr - 1] # Get the left neighbor
+            
+            if veeru_nr == len(maatriks[rea_nr]) - 1: # If it's the last column
+                parem = '' # No right neighbor
+            else: # Otherwise
+                parem = maatriks[rea_nr][veeru_nr + 1] # Get the right neighbor
+            
+            yhendatud = vasak + parem # Concatenate left and right neighbors
+            
+            if sorted(element) == sorted(yhendatud): # Check if the element is an anagram of the concatenated neighbors
+                return True # An anagram is found
+    
+    return False # No anagram found

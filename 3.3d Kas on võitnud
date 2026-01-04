@@ -1,0 +1,31 @@
+def voitis_nurkademangu(tabel): # Checks if all four corners are 'X'
+    nurgad = [tabel[0][0], tabel[0][4], tabel[4][0], tabel[4][4]] # Get the four corners
+    return all(nurk == 'X' for nurk in nurgad) # Check if all corners are 'X'
+
+
+def x_peadiagonaalil(tabel): # Counts 'X' on the main diagonal
+    loendur = 0 # Initialize counter
+    for i in range(5): # Loop through indices 0 to 4
+        if tabel[i][i] == 'X': # Check if the element on the main diagonal is 'X'
+            loendur += 1 # Increment counter
+    return loendur # Return the count of 'X' on the main diagonal
+
+
+def x_korvaldiagonaalil(tabel): # Counts 'X' on the anti-diagonal
+    loendur = 0 # Initialize counter
+    for i in range(5): # Loop through indices 0 to 4
+        if tabel[i][4-i] == 'X': # Check if the element on the anti-diagonal is 'X'
+            loendur += 1 # Increment counter
+    return loendur # Return the count of 'X' on the anti-diagonal
+
+
+def voitis_diagonaalidemangu(tabel): # Checks if both diagonals are fully 'X'
+    return x_peadiagonaalil(tabel) == 5 and x_korvaldiagonaalil(tabel) == 5 # Both diagonals must have 5 'X'
+
+
+def voitis_taismangu(tabel): # Checks if the entire table is filled with 'X'
+    for rida in tabel: # Loop through each row
+        for element in rida: # Loop through each element in the row
+            if element != 'X': # Check if the element is not 'X'
+                return False # Found a non-'X' element
+    return True # All elements are 'X'

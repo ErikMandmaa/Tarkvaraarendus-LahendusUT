@@ -1,0 +1,9 @@
+def nummerda(korruste_arv, kortereid_korrusel): # Define the function with two parameters
+    tulemus = [] # List to store results
+    for korrus in range(1, korruste_arv + 1): # Iterate through each floor
+        korruse_korterid = [] # List to store apartment numbers for the current floor
+        for korter in range(1, kortereid_korrusel + 1): # Iterate through each apartment on the floor
+            korteri_number = str(korrus) + str(korter) # Create apartment number by concatenating floor and apartment numbers
+            korruse_korterid.append(korteri_number) # Append the apartment number to the list
+        tulemus.append(korruse_korterid) # Append the list of apartment numbers for the floor to the results
+    return tulemus # Return the list of apartment numbers

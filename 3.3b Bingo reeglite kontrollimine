@@ -1,0 +1,24 @@
+def on_bingo_tabel(tabel): # Checks if the table follows basic bingo rules
+    for veeru_nr in range(5): # Iterate through each of the 5 columns
+        min_vaartus = veeru_nr * 15 + 1 # Calculate minimum value for the column
+        max_vaartus = (veeru_nr + 1) * 15 # Calculate maximum value for the column
+        
+        for rida in range(5): # Iterate through each of the 5 rows
+            arv = tabel[rida][veeru_nr] # Get the number at the current row and column
+            if arv < min_vaartus or arv > max_vaartus: # Check if the number is within the valid range
+                return False # Return False if the number is out of range
+    
+    return True # Return True if all numbers are within their respective ranges
+
+def on_bingo_tabel_extra(tabel): # Checks if the table follows bingo rules and has all unique numbers
+    if not on_bingo_tabel(tabel): # First, check if it meets basic bingo rules
+        return False # Return False if it doesn't
+    
+    koik_arvud = [] # List to store all numbers found in the table
+    for rida in tabel: # Iterate through each row in the table 
+        for arv in rida: # Iterate through each number in the row
+            if arv in koik_arvud: # Check if the number has already been seen
+                return False # Return False if a duplicate is found
+            koik_arvud.append(arv) # Add the number to the list of seen numbers
+    
+    return True # Return True if all numbers are unique and within their respective ranges

@@ -1,0 +1,24 @@
+fail = open("toad.txt", encoding="UTF-8") # Open the file with room numbers
+
+tubade_tabel = [] # Table to hold room numbers
+
+for rida in fail: # For each line in the file
+    korruse_toad = [] # Collect rooms on one floor
+    osad = rida.split() # Split at spaces
+
+    for osa in osad: # For each part
+        korruse_toad.append(int(osa)) # Add the next room
+
+    tubade_tabel.append(korruse_toad) # Add the floor's room list
+
+fail.close() # Close the file
+
+for korrus_index in range(len(tubade_tabel)): # Print rooms that need cleaning (even floors and even room numbers)
+    korrus_number = korrus_index + 1 # Floor number (1-indexed)
+     
+    if korrus_number % 2 == 0:   # Check if it's an even floor
+        
+        for tuba in tubade_tabel[korrus_index]: # Iterate through rooms on that floor
+            
+            if tuba % 2 == 0: # Check if the room number is even
+                print(tuba) # Print the room number
