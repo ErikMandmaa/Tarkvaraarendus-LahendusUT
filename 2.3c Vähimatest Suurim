@@ -1,0 +1,8 @@
+def vahimatest_suurim(maatriks): # Function finds the largest among the smallest elements of each row
+    ridade_minimumid = [] # Find the minimum element in each row and store it here
+    
+    for rida in maatriks: # Iterate through each row of the matrix
+        min_element = min(rida) # Find the minimum element in the current row
+        ridade_minimumid.append(min_element) # Add the minimum element to the list
+    
+    return max(ridade_minimumid) # Return the largest element among the minimums of each row

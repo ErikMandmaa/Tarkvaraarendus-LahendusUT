@@ -1,0 +1,41 @@
+fail = open("raamatud.txt", encoding="UTF-8") # Open the file with books
+
+kirjandus_tabel = [] # Empty list to store books
+
+for rida in fail:    # For each line in the file
+    raamat = []     # Collect book title and page count into a list
+    osad = rida.split(":") # Split the line at the colon
+
+    pealkiri = osad[0].strip() # Extract the title
+    leheküljed = int(osad[1]) # Extract the page count
+
+    raamat.append(pealkiri) # Add the book title and page count to the list
+    raamat.append(leheküljed) # Add the page count to the list
+
+    kirjandus_tabel.append(raamat) # Add the book list to the literature table
+
+fail.close() # Close the file
+
+print("Raamatud, mille lugemiseks kulub rohkem kui neli päeva:") # Calculate and print books that take more than 4 days to read
+
+kogu_lehekülgi = 0 # Total pages for all books
+
+for raamat in kirjandus_tabel: # For each book in the literature table
+    pealkiri = raamat[0] # Book title
+    leheküljed = raamat[1] # Page count
+    
+    kogu_lehekülgi += leheküljed # Add to total pages
+    
+    päevi = leheküljed / 60 # Calculate days needed (30 pages per hour * 2 hours per day = 60 pages per day)
+    
+    import math # Import math module for ceiling function
+    päevi_ümardatud = math.ceil(päevi) # Round up to full days
+    
+    if päevi_ümardatud > 4:  # Print if more than 4 days
+        print(f"{pealkiri} - {päevi_ümardatud} päeva") # Print book title and days needed
+
+kogu_tunde = kogu_lehekülgi / 30 # Calculate total hours (30 pages per hour)
+
+kogu_tunde_ümardatud = round(kogu_tunde, 1) # Round to one decimal place
+
+print(f"Kõigi raamatute lugemiseks kulub {kogu_tunde_ümardatud} h.") # Print total hours

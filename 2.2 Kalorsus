@@ -1,0 +1,26 @@
+fail = open("kalorid.txt", encoding="UTF-8") # Open the file with UTF-8 encoding
+
+toitude_tabel = [] # Create an empty list to store the food data 
+
+for rida in fail: # Loop through each line in the file
+    korra_grammid = [] # Create an empty list to store the grams for the current meal
+    osad = rida.split() # Split the line into parts based on whitespace
+
+    for osa in osad: # Loop through each part of the line
+        korra_grammid.append(int(osa)) # Convert the part to an integer and add it to the current meal list
+
+    toitude_tabel.append(korra_grammid) # Add the current meal list to the main food data list
+
+fail.close() # Close the file
+
+kokku_kalorid = 0 # Initialize total calories to zero
+
+for toidukord in toitude_tabel: # Loop through each meal in the food data list
+    susivesikud = toidukord[0] # Get the carbohydrates for the meal
+    valgud = toidukord[1] # Get the proteins for the meal
+    rasvad = toidukord[2] # Get the fats for the meal
+
+    korra_kalorid = susivesikud * 4 + valgud * 4 + rasvad * 9 # Calculate the calories for the meal
+    kokku_kalorid += korra_kalorid # Add the meal's calories to the total
+
+print(kokku_kalorid) # Print the total calories

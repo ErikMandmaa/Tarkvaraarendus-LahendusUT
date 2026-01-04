@@ -1,0 +1,20 @@
+fail = open("retseptid.txt", encoding="UTF-8") # Open the file with recipes
+
+retseptid_tabel = [] # Empty list to store recipes
+
+for rida in fail:    # For each line in the file
+    koostisosad = []     # Collect ingredients from the line into a list
+    osad = rida.split(",") # Split the line at commas
+
+    for osa in osad: # Check each piece separately
+        koostisosad.append(osa.strip()) # Add ingredients to the list
+
+    retseptid_tabel.append(koostisosad) # Add the ingredients list to the recipes table
+
+fail.close() # Close the file
+
+print("Retseptid, milleks on vaja maasikaid ja suhkrut:") # Print recipes that contain both sugar and strawberries
+
+for retsept in retseptid_tabel: # For each recipe in the recipes table
+    if "suhkur" in retsept and "maasikad" in retsept: # Check if both sugar and strawberries are in the recipe
+        print(retsept) # Print the recipe
