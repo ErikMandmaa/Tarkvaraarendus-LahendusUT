@@ -1,0 +1,30 @@
+fail = open("tulemused.txt", encoding="UTF-8") # Opens the file with match results
+
+tulemuste_tabel = [] # Initializes an empty list to store the results
+
+for rida in fail: # Reads each line from the file
+    seti_punktid = [] # Initializes an empty list to store points for the current set
+    osad = rida.split() # Splits the line into parts based on whitespace
+
+    for osa in osad: # Iterates through each part
+        seti_punktid.append(int(osa)) # Converts the part to an integer and appends it to the set points list
+ 
+    tulemuste_tabel.append(seti_punktid) # Appends the set points list to the results table
+fail.close() # Closes the file
+
+eesti_setid = 0 # Initializes the counter for Estonia's sets won
+soome_setid = 0 # Initializes the counter for Finland's sets won
+
+for sett in tulemuste_tabel: # Iterates through each set in the results table
+    eesti_punktid = sett[0] # Points scored by Estonia in the set
+    soome_punktid = sett[1] # Points scored by Finland in the set
+    
+    if eesti_punktid >= 11 and eesti_punktid - soome_punktid >= 2: # Checks if Estonia won the set
+        eesti_setid += 1 # Increments Estonia's set win counter
+    elif soome_punktid >= 11 and soome_punktid - eesti_punktid >= 2: # Checks if Finland won the set
+        soome_setid += 1 # Increments Finland's set win counter
+
+if eesti_setid > soome_setid: # Determines the overall winner
+    print(f"Eesti võitis {eesti_setid}-{soome_setid}") # Prints Estonia's victory
+else: # If Finland won
+    print(f"Soome võitis {soome_setid}-{eesti_setid}") # Prints Finland's victory
