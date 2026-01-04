@@ -1,0 +1,7 @@
+with open('hinded.csv', 'r') as fail: # Open the file in read mode
+    for rida in fail: # Iterate through each line in the file
+        osad = rida.strip().split(',') # Split the line by commas
+        aine = osad[0] # The first part is the subject name
+        hinded = [int(x) for x in osad[1:]] # Convert the rest to integers (grades)
+        keskmine = sum(hinded) / len(hinded) # Calculate the average grade
+        print(f"{aine}: {keskmine:.1f}") # Print the subject and average grade formatted to one decimal place

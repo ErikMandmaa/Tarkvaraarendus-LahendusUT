@@ -1,0 +1,30 @@
+import os # Import the os module to interact with the operating system
+
+for nimi in os.listdir(): # Loop through all files in the current directory
+    if nimi.endswith(".csv"): # Check if the file ends with .csv
+        failinimi = nimi # Store the filename
+        break # Exit the loop once the first .csv file is found
+
+andmed = [] # Initialize an empty list to store data
+
+with open(failinimi, "r") as fail: # Open the CSV file for reading
+    for rida in fail: # Iterate through each line in the file
+        osad = rida.strip().split(";") # Split the line into parts using semicolon as delimiter
+        maakond = osad[0] # The county name
+        arvud = [int(x) for x in osad[1:]] # Convert the rest of the parts to integers
+        andmed.append([maakond] + arvud) # Append the county and its data to the list
+
+suurim_summa = 0 # Variable to track the largest sum
+suurim_maakond = "" # Variable to track the county with the largest sum
+
+for rida in andmed: # Iterate through each county's data
+    maakond = rida[0] # The county name
+    summa = sum(rida[1:]) # Calculate the sum of participants for that county
+    if summa > suurim_summa: # Check if this sum is greater than the current largest sum
+        suurim_summa = summa # Update the largest sum
+        suurim_maakond = maakond # Update the county with the largest sum
+
+kogusumma = sum(sum(r[1:]) for r in andmed) # Calculate the total number of participants across all counties
+
+print(f"Kõige rohkem osalejaid - {suurim_maakond}, {suurim_summa} inimest.") # Print the county with the most participants
+print(f"Kokku on kursusel osalenud {kogusumma} inimest.") # Print the total number of participants

@@ -1,0 +1,10 @@
+with open('tehnika.txt', 'r') as fail: # Open the file for reading
+    for rida in fail: # Iterate through each line in the file
+        osad = rida.strip().split() # Split the line into parts
+        naitaja = osad[0] # The indicator name
+        aasta_2000 = int(osad[1]) # Value for the year 2000
+        aasta_2006 = int(osad[7]) # Value for the year 2006
+        muutus = aasta_2006 - aasta_2000 # Calculate the change
+        
+        if muutus > 10: # Check if the change is greater than 10
+            print(f"{naitaja} - {muutus}%") # Print the indicator and the change
