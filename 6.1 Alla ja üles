@@ -1,0 +1,15 @@
+def alla_ules(n): # Recursive function to print numbers down and up
+    if n == 0: # Base case
+        print("Põhi!") # Print "Põhi!" when n is 0
+    elif n == 1: # Base case for n = 1
+        print(1) # Print 1
+        print("Põhi!") # Print "Põhi!" when n is 1
+        print(0) # Print 0
+    elif n % 2 == 1: # If n is odd
+        print(n) # Print n
+        alla_ules(n - 2) # Recursive call with n-2
+        print(n - 1) # Print n-1
+    else: # If n is even
+        print(n) # Print n
+        alla_ules(n - 2) # Recursive call with n-2
+        print(n - 1) # Print n-1

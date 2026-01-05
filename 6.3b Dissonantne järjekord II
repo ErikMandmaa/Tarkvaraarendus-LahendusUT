@@ -1,0 +1,21 @@
+def on_rahulik(arvamus1, arvamus2, erinevus): # Checks if two opinions are harmonious
+    if arvamus1 == 0 or arvamus2 == 0: # If either opinion is neutral
+        return True # They are considered harmonious
+    
+    if arvamus1 * arvamus2 > 0: # If both opinions have the same sign
+        return True # They are harmonious
+    
+    if abs(arvamus1 - arvamus2) <= erinevus: # If the difference is within the allowed range
+        return True # They are harmonious
+    
+    return False # They are not harmonious
+
+
+def dissonandid(arvamused, lubatud_erinevus): # Returns a list of index pairs of dissonant opinions
+    erilased = [] # Initialize an empty list to store dissonant pairs
+    
+    for i in range(len(arvamused) - 1): # Loop through the list of opinions
+        if not on_rahulik(arvamused[i], arvamused[i+1], lubatud_erinevus): # Check if adjacent opinions are not harmonious
+            erilased.append((i, i+1)) # Add the index pair to the list
+    
+    return erilased # Return the list of dissonant pairs

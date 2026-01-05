@@ -1,0 +1,14 @@
+def on_rahulik(arvamus1, arvamus2, erinevus): # Function to check if two opinions are harmonious
+    if abs(arvamus1 - arvamus2) <= erinevus or arvamus1 * arvamus2 >= 0: # Check conditions for harmony
+        return True # Return True if harmonious
+    return False # Return False if not harmonious
+
+
+def dissonantside_arv(arvamused, lubatud_erinevus): # Function to count dissonant pairs in a list of opinions
+    dissonantsid = 0 # Initialize dissonant count to 0
+
+    for i in range(len(arvamused) - 1): # Loop through opinions
+        if not on_rahulik(arvamused[i], arvamused[i+1], lubatud_erinevus): # Check if adjacent opinions are not harmonious
+            dissonantsid += 1 # Increment dissonant count
+
+    return dissonantsid # Return the total count of dissonant pairs
