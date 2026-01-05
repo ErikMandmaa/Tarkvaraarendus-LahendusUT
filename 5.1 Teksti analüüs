@@ -1,0 +1,10 @@
+def symbolite_sagedus(sõne): # Function to count symbol frequencies in a string
+    sagedused = {} # Initialize an empty dictionary to store frequencies
+    
+    for symbol in sõne: # Iterate over each symbol in the input string
+        if symbol in sagedused: # If the symbol is already in the dictionary
+            sagedused[symbol] += 1 # Increment its count
+        else: # If the symbol is not in the dictionary
+            sagedused[symbol] = 1 # Initialize its count to 1
+    
+    return sagedused # Return the dictionary with symbol frequencies

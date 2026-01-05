@@ -1,0 +1,39 @@
+def sorteeri(failinimi): # Reads a file and organizes albums by decade
+    sonastik = {} # Initialize an empty dictionary
+    
+    with open(failinimi, 'r') as fail: # Open the file for reading
+        for rida in fail: # Iterate over each line in the file
+            osad = rida.strip().split(';') # Split the line into components
+            aasta = int(osad[2]) # Extract the year and convert it to an integer
+            aastakymme = (aasta // 10) * 10 # Determine the decade
+            
+            if aastakymme not in sonastik: # If the decade is not already a key in the dictionary
+                sonastik[aastakymme] = [] # Initialize an empty list for that decade
+            
+            sonastik[aastakymme].append(osad) # Append the album data to the list for that decade
+    
+    return sonastik # Return the dictionary organizing albums by decade
+
+
+def kuva(sonastik): # Displays the number of albums and best-selling album for each decade
+    for aastakymme in sonastik: # Iterate over each decade in the dictionary
+        albumid = sonastik[aastakymme] # Get the list of albums for that decade
+        arv = len(albumid) # Count the number of albums
+        
+        suurim_muuk = 0 # Initialize the highest sales to zero
+        parim_album = None # Initialize the best-selling album to None
+         
+        for album in albumid: # Iterate over each album in the list
+            muuk = int(album[3]) # Extract the sales figure and convert it to an integer
+            if muuk > suurim_muuk: # If this album has higher sales than the current highest
+                suurim_muuk = muuk # Update the highest sales
+                parim_album = album # Update the best-selling album
+        
+        artist = parim_album[0] # Extract the artist name from the best-selling album
+        pealkiri = parim_album[1] # Extract the album title from the best-selling album
+        
+        print(f"{aastakymme}: {arv} album(it) ({artist} - {pealkiri})") # Print the decade, number of albums, and best-selling album details
+
+
+albumid = sorteeri("albumid.txt") # Read and organize albums from the file
+kuva(albumid) # Display the results

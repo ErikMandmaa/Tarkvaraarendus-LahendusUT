@@ -1,0 +1,13 @@
+def kooslubajad(erakonnad): # Function to find the pair of parties with the largest common promises
+    suurim_yhisosa = 0 # Variable to track the size of the largest common promises
+    parim_paar = (0, 1) # Variable to store the best pair of parties
+    
+    for i in range(len(erakonnad)): # Loop through each party
+        for j in range(i + 1, len(erakonnad)): # Loop through each subsequent party
+            yhisosa = len(erakonnad[i] & erakonnad[j]) # Calculate the size of common promises
+            
+            if yhisosa > suurim_yhisosa: # If the current common promises are larger than the previous largest
+                suurim_yhisosa = yhisosa # Update the largest common promises
+                parim_paar = (i, j) # Update the best pair of parties
+    
+    return parim_paar # Return the pair of parties with the largest common promises

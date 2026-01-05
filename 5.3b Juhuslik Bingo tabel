@@ -1,0 +1,16 @@
+from random import sample # Import the sample function from the random module
+
+def juhuslik_bingo(): # Function to generate a random bingo table
+    tabel = [] # Initialize an empty list to hold the bingo table
+    
+    for veeru_nr in range(5): # Iterate over each of the 5 columns
+        min_vaartus = veeru_nr * 15 + 1 # Calculate the minimum value for the column
+        max_vaartus = (veeru_nr + 1) * 15 # Calculate the maximum value for the column
+        veerg = sample(range(min_vaartus, max_vaartus + 1), 5) # Randomly select 5 unique numbers for the column
+        
+        for rea_nr in range(5): # Iterate over each of the 5 rows
+            if veeru_nr == 0: # If it's the first column, initialize the row
+                tabel.append([]) # Initialize an empty list for the row
+            tabel[rea_nr].append(veerg[rea_nr]) # Append the number to the corresponding row
+    
+    return tabel # Return the generated bingo table

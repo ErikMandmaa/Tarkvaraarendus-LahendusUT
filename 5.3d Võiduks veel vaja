@@ -1,0 +1,30 @@
+def nurkademanguks_vaja(tabel): # 5x5 Table of strings
+    nurgad = [] # List of strings
+    if tabel[0][0] != 'X': # Top-left corner
+        nurgad.append(tabel[0][0]) # Add to list if not 'X'
+    if tabel[0][4] != 'X': # Top-right corner
+        nurgad.append(tabel[0][4]) # Add to list if not 'X'
+    if tabel[4][0] != 'X': # Bottom-left corner
+        nurgad.append(tabel[4][0]) # Add to list if not 'X'
+    if tabel[4][4] != 'X': # Bottom-right corner
+        nurgad.append(tabel[4][4]) # Add to list if not 'X'
+    return nurgad # Return list of missing corner items
+
+
+def diagonaalidemanguks_vaja(tabel): # 5x5 Table of strings
+    puuduvad = [] # List of strings
+    for i in range(5): # Iterate over indices 0 to 4
+        if tabel[i][i] != 'X': # Main diagonal
+            puuduvad.append(tabel[i][i]) # Add to list if not 'X'
+    for i in range(5): # Iterate over indices 0 to 4
+        if tabel[i][4-i] != 'X' and tabel[i][4-i] not in puuduvad: # Anti-diagonal
+            puuduvad.append(tabel[i][4-i]) # Add to list if not 'X' and not already added
+    return puuduvad # Return list of missing diagonal items
+
+def taismanguks_vaja(tabel): # 5x5 Table of strings
+    puuduvad = [] # List of strings
+    for i in range(5): # Iterate over rows
+        for j in range(5): # Iterate over columns
+            if tabel[i][j] != 'X': # If cell is not 'X'
+                puuduvad.append(tabel[i][j]) # Add to list
+    return puuduvad # Return list of all missing items
